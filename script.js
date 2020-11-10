@@ -167,12 +167,13 @@ let cartSum = document.querySelector("#cartsum")
 let cartList = document.querySelector(".cart-list")
 
 
+
 let cartButtonSort = () => {
 
 let cartButton = document.querySelectorAll('.cart')	
 
 let sum = "";
-let aaa; 
+let innerCart = []; 
 
 for(let i = 0; i < cartButton.length; i++){
 	
@@ -195,17 +196,13 @@ cartButton[i].addEventListener("click",()=>{
 		sum ++;
 		cartSum.innerHTML = " " +sum;
 
+			
 
-		aaa = document.createElement("p")
+		innerCart.push(PRODUCTS[i])
 		
-		aaa.innerHTML = `<img 
-
-		src =${PRODUCTS[i].image}>
-		${PRODUCTS[i].title}
+		localStorage.setItem('products' , JSON.stringify(innerCart))
 		
-		`
-
-		cartList.appendChild(aaa)
+		console.log(innerCart)
 
 	}
 	
@@ -217,10 +214,10 @@ cartButton[i].addEventListener("click",()=>{
 cartButtonSort();
 
 
-cartProducts.addEventListener("click",()=>{
-	cartList.classList.toggle('cart-list__active')
-	
-})
+
+
+
+
 
 
 
