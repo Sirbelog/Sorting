@@ -110,6 +110,7 @@ addProducts();
 
 
 
+
 //------------Сортировка.
 
 
@@ -163,6 +164,17 @@ rating.addEventListener("click",function(){
 let cartProducts = document.querySelector("#cart")
 let cartSum = document.querySelector("#cartsum")
 let cartList = document.querySelector(".cart-list")
+let sum;
+
+
+if(localStorage.getItem('products') != null && localStorage.getItem('products').length > 5){
+sum = localStorage.getItem('products').match(/['d']/g).length;
+cartSum.innerHTML = sum;
+}else if(sum == undefined){
+sum = 0;
+cartSum.innerHTML = 'Пусто';
+}
+
 
 
 
@@ -170,7 +182,7 @@ let cartButtonSort = () => {
 
 let cartButton = document.querySelectorAll('.cart')	
 
-let sum = "";
+
 let innerCart;
 
 if(localStorage.getItem('products') == null){     // Проверка наличия товара в localstorage
@@ -185,22 +197,8 @@ for(let i = 0; i < cartButton.length; i++){
 	
 cartButton[i].addEventListener("click",()=>{					
 
-	if (cartButton[i].innerHTML == "Удалить из корзины"){
-		cartButton[i].style.backgroundColor = "Green"
-		cartButton[i].innerHTML = "Добавить в корзину"
-		sum--;
-		cartSum.innerHTML = " " +sum;
-
-
-	if(sum == 0){cartSum.innerHTML = "";};
-							
-	}else	
-	
-		{
 		sum ++;
-		cartSum.innerHTML = " " +sum;
-
-			
+		cartSum.innerHTML = sum;
 
 		innerCart.push(PRODUCTS[i])
 		
@@ -208,7 +206,7 @@ cartButton[i].addEventListener("click",()=>{
 		
 		console.log(innerCart)
 
-	}
+	
 	
 });
 

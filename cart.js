@@ -6,7 +6,7 @@ let productsCart = document.querySelector(".products-cart")
 
 let list = JSON.parse(localStorage.getItem('products'))
 
-	
+if(localStorage.getItem('products') != null)	{
 list.forEach(elem =>{
 	productsCart.innerHTML += 
 	`
@@ -18,6 +18,7 @@ list.forEach(elem =>{
 	<button class = 'delete__cart'>Удалить</button>
 	</div>
 	`;})
+}
 
 	let deleteButton = document.querySelectorAll(".delete__cart");
 	
@@ -39,3 +40,8 @@ list.forEach(elem =>{
 		
 
 	}
+
+	let clearCart = document.querySelector("#clearcart").addEventListener('click',()=>{
+		productsCart.innerHTML = "";
+		localStorage.clear();
+	})
