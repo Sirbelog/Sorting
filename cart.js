@@ -18,3 +18,24 @@ list.forEach(elem =>{
 	<button class = 'delete__cart'>Удалить</button>
 	</div>
 	`;})
+
+	let deleteButton = document.querySelectorAll(".delete__cart");
+	
+	console.log(deleteButton)
+
+	for(let j = 0; j < deleteButton.length; j++){
+		
+		deleteButton[j].addEventListener('click',()=>{
+
+			list.splice(j,1);
+			localStorage.setItem('products', JSON.stringify(list))
+
+			productsCart.children[j].classList.add('none')
+			// deleteButton[j].remove()
+			console.log(productsCart.children[j])
+			console.log(j)
+		})
+		
+		
+
+	}

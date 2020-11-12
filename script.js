@@ -80,7 +80,7 @@ const PRODUCTS = [
 ];
 
 
-//------------Добавление товара.
+//------------Добавление товаров на страницу.
 
 
 let prooductsList = document.querySelector(".products")
@@ -102,8 +102,6 @@ let prooductsList = document.querySelector(".products")
 	`;
 
 });
-
-
 
 
 };
@@ -173,11 +171,19 @@ let cartButtonSort = () => {
 let cartButton = document.querySelectorAll('.cart')	
 
 let sum = "";
-let innerCart = []; 
+let innerCart;
+
+if(localStorage.getItem('products') == null){     // Проверка наличия товара в localstorage
+	innerCart = []; 
+}else{
+	innerCart = JSON.parse(localStorage.getItem('products'))
+}
+
+
 
 for(let i = 0; i < cartButton.length; i++){
 	
-cartButton[i].addEventListener("click",()=>{
+cartButton[i].addEventListener("click",()=>{					
 
 	if (cartButton[i].innerHTML == "Удалить из корзины"){
 		cartButton[i].style.backgroundColor = "Green"
@@ -191,8 +197,6 @@ cartButton[i].addEventListener("click",()=>{
 	}else	
 	
 		{
-		cartButton[i].style.backgroundColor = "Blue";
-		cartButton[i].innerHTML = "Удалить из корзины";
 		sum ++;
 		cartSum.innerHTML = " " +sum;
 
@@ -200,7 +204,7 @@ cartButton[i].addEventListener("click",()=>{
 
 		innerCart.push(PRODUCTS[i])
 		
-		localStorage.setItem('products' , JSON.stringify(innerCart))
+		localStorage.setItem('products' , JSON.stringify(innerCart)) // Добавление товара в local storage
 		
 		console.log(innerCart)
 

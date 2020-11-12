@@ -105,6 +105,10 @@ img{
 	width: 170px;
 }
 
+.cart:active{
+	background-color: blue;
+}
+
 #cartsum{
 	color:black;
 	font-size: 20px;
@@ -128,5 +132,9 @@ img{
 	
 }
 
+
+.none{
+	display: none;
+}
 
 
